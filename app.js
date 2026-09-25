@@ -67,7 +67,7 @@
     detail.hidden = matches;
     detail.textContent = mode === 'xml'
       ? 'Archivo seleccionado localmente. Su contenido no ha sido leído ni validado.'
-      : 'Estos datos no corresponden al ejemplo de esta demostración. Usa “Cargar ejemplo” para probar el resultado simulado.';
+      : 'ERROR: No se pudo procesar la solicitud.';
     result.hidden = false;
     result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
