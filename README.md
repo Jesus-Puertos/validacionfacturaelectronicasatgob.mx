@@ -16,9 +16,9 @@ El código de imagen es una simulación en el navegador, no un mecanismo de segu
 
 ## QR imprimible
 
-`qr-prueba.html` permite imprimir el QR o guardarlo como PDF. El QR incluido apunta a una IP de la red local de desarrollo, no a una página pública permanente.
+`qr-prueba.html` permite imprimir el QR o guardarlo como PDF. El QR incluido abre https://validacionfacturaelectronicasatgob.vercel.app/?demo=cfdi-01 y precarga los datos del ejemplo. Funciona desde cualquier dispositivo con internet.
 
-Una vez publicada la demostración, regenera el QR con su URL HTTPS definitiva:
+Si cambia la URL pública, regenera el QR:
 
 ```sh
 python -m pip install "qrcode[pil]"
