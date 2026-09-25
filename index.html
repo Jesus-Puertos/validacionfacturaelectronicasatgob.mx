@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Prototipo educativo y profesional de una interfaz de verificación de CFDI. Sitio de prueba no oficial.">
+  <title>Verificación de CFDI · Prototipo no oficial</title>
+  <style>
+
+@font-face{font-family:Patria;src:url('assets/patria.otf') format('opentype');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Noto Sans';src:url('assets/noto-sans-300.ttf') format('truetype');font-weight:300;font-display:swap}
+@font-face{font-family:'Noto Sans';src:url('assets/noto-sans-400.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'Noto Sans';src:url('assets/noto-sans-600.ttf') format('truetype');font-weight:600;font-display:swap}
+@font-face{font-family:'Noto Sans';src:url('assets/noto-sans-700.ttf') format('truetype');font-weight:700;font-display:swap}
+
+:root{--wine:#611232;--gold:#b18e5e;--ink:#414141}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:white;font:18px/1.428571 'Noto Sans',Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}a{color:var(--wine);text-underline-offset:4px}a,input,button,summary{outline-offset:4px}input:focus-visible,button:focus-visible{outline:2px solid var(--gold)}[hidden]{display:none!important}
+/* Use CSS dimensions, not screenshot/device pixels. Both screenshots are scaled ~125%. */
+.wrap{width:calc(100% - 48px);max-width:1140px;margin-inline:auto}
+.masthead{background:var(--wine);color:#fff}.brand-row{height:80px;display:flex;align-items:center;gap:24px}.government-logo{width:164px;height:60px;object-fit:contain}.prototype-badge{font-size:9px;letter-spacing:.6px;color:#f2dfbc;border:1px solid #aa8755;padding:4px 7px;margin-right:auto;white-space:nowrap}.government-links{display:flex;align-items:center;gap:30px}.government-links a{color:#fff;text-decoration:none;font-size:16px;display:flex;align-items:center}.government-links a:hover{text-decoration:underline}.government-links svg{width:20px;height:20px}
+.nav{background:#380c1e}.nav-inner{height:68px;display:flex;align-items:center}.nav-title{font-size:20px;font-weight:300}
+main.wrap{position:relative;left:15px}.crumb{padding:38px 0 0;margin:0 0 64px;font-size:18px;font-weight:300;line-height:28px}.crumb a{display:inline-flex;align-items:center;gap:7px;color:var(--ink);text-decoration:none}.crumb svg{width:18px;height:18px}.crumb span{font-size:24px;line-height:1}
+.intro{position:relative}.agency-logo{width:309px;height:42px;max-width:100%;object-fit:contain;display:block}.version{font-size:18px;font-weight:300;line-height:28px;margin:0 0 25px}.version span{font-size:10px;color:#806432;margin-left:8px}h1{font-family:Patria,Georgia,serif;font-size:28px;font-weight:600;line-height:1.1;margin:0;letter-spacing:0}.reference-disclaimer{position:absolute;top:100%;left:0;margin:10px 0 0;font-size:10px;line-height:15px;color:#806432}
+.reference-form{margin:50px 0 40px}.query-options{display:flex;gap:40px;position:relative;border:0;border-bottom:1px solid #ddd;padding:0 0 26px;margin:0;min-width:0}.query-options:after{content:'';position:absolute;bottom:-5px;left:0;width:35px;height:5px;background:var(--gold)}.query-options label{display:flex;align-items:center;gap:9px;margin:0;font-size:18px;line-height:24px;font-weight:700;cursor:pointer}.query-options input{width:18px;height:18px;margin:0;accent-color:#0780ff;flex-shrink:0}
+.reference-form form{padding:50px 25px 0}.reference-heading{font-size:18px;font-weight:700;line-height:26px;margin:0 0 32px}.reference-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;border:0;margin:0;padding:0;min-width:0}.reference-fields label,.verification-row label,.xml-fields label{display:block;font-size:18px;font-weight:300;line-height:24px;margin:0}input{width:100%;min-width:0;background:#fff;color:var(--ink);padding:7px 10px;border:1px solid #ccc;border-radius:4px}.reference-fields input,.verification-row input{height:39px;box-shadow:inset 0 1px 1px #00000013}.verification-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:15px;align-items:start}.captcha-demo svg{display:block;width:150px;height:100px;max-width:100%}.verify-action{display:flex;justify-content:flex-end;padding-top:26px}.verify-button{background:white;color:var(--wine);border:2px solid var(--wine);border-radius:3px;padding:10px 24px;font-size:18px;font-weight:300;line-height:24px;min-height:48px}.verify-button:hover{background:#f7eff2}.required-note{font-size:18px;font-weight:300;color:#777;margin:24px 0 18px 16px}.xml-fields{border:0;padding:0;margin:0;min-width:0}.xml-fields input{display:block;max-width:520px}.hint{font-size:11px;color:#63676b;margin:7px 0}
+.demo-tools{display:flex;gap:18px;align-items:center;flex-wrap:wrap;border-top:1px solid #eee;padding-top:10px;font-size:11px;color:#806432}.demo-tools span{margin-right:auto}.text-button{border:0;background:none;color:var(--wine);font-size:12px;text-decoration:underline;padding:8px 0}.privacy{font-size:11px;color:#63676b;margin:14px 0}.result{background:#f8f6f1;border:1px solid #dfd4bd;padding:16px;margin-top:18px;border-radius:3px;overflow-wrap:anywhere}.result h3{font-size:17px;color:var(--wine);margin:0 0 8px}.result p{font-size:13px;margin:5px 0}
+.faq{border-top:1px solid #ddd;padding:24px 0 36px}.faq h2{font-size:20px;margin:0 0 16px}details{border-bottom:1px solid #ddd;padding:12px 0;font-size:14px}summary{cursor:pointer;font-weight:600}details p{font-size:13px;color:#63676b;max-width:850px}footer{background:var(--wine);color:#e4d6dc;border-top:4px solid var(--gold);padding:24px 0}.footer-inner{display:flex;justify-content:space-between;gap:20px;font-size:12px}.footer-inner strong{color:white;font-size:14px}.footer-inner p{margin:6px 0}.footer-tag{text-align:right}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:1199px) and (min-width:992px){.wrap{max-width:940px}}
+@media(max-width:991px) and (min-width:768px){.wrap{max-width:720px}.reference-fields,.verification-row{gap:18px}.reference-form form{padding-inline:15px}.query-options{gap:30px}.query-options label{font-size:16px}.reference-fields label,.verification-row label{font-size:16px}}
+@media(max-width:767px){.wrap{width:calc(100% - 32px)}main.wrap{left:0}.brand-row{height:auto;min-height:80px;flex-wrap:wrap;padding:12px 0;gap:12px}.government-logo{width:150px;height:55px}.prototype-badge{margin-left:auto;margin-right:0;font-size:8px}.government-links{width:100%;justify-content:flex-end;gap:24px}.nav-inner{height:56px}.nav-title{font-size:18px}.crumb{padding-top:25px;margin-bottom:40px}.version{margin-bottom:24px}.version span{font-size:9px}h1{font-size:26px;line-height:1.2}.reference-disclaimer{position:static;margin-top:14px}.reference-form{margin-top:30px}.query-options{flex-direction:column;gap:18px;padding-bottom:22px}.reference-form form{padding:34px 0 0}.reference-heading{margin-bottom:26px}.reference-fields,.verification-row{grid-template-columns:1fr;gap:18px}.verify-action{padding-top:0}.verify-button{width:100%}.required-note{margin-left:0}.footer-inner{flex-direction:column}.footer-tag{text-align:left}}
+
+.result-table{padding:0;border:0;background:white;border-radius:0;margin:26px 0 24px}
+.result-table .result-notice{font-size:11px;color:#806432;margin:0 0 12px;padding:8px 10px;background:#f8f6f1;border-left:3px solid var(--gold)}
+.table-scroll{overflow-x:auto}.cfdi-table{width:100%;border-collapse:collapse;font-size:18px;line-height:1.428571;text-align:left;table-layout:fixed}.cfdi-table th{background:#f8f8f8;font-weight:700}.cfdi-table td{font-weight:300;overflow-wrap:anywhere}.cfdi-table th,.cfdi-table td{padding:10px 8px;border-top:1px solid #ddd;vertical-align:top}.result-table .result-footnote{font-size:11px;color:#806432;margin-top:12px}
+@media(max-width:767px){.cfdi-table{min-width:850px;font-size:16px}}
+
+.government-footer{background:#611232;border:0;padding:14px 0 18px;color:#fff;font-size:16px;line-height:1.5}
+.government-footer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px}
+.footer-brand{padding-top:12px}.footer-brand img{display:block;width:164px;height:60px;object-fit:contain}
+.government-footer h2{font:700 18px/1.2 'Noto Sans',Arial,sans-serif;margin:0 0 26px}
+.government-footer p{margin:36px 0 18px}.government-footer ul{list-style:none;padding:0;margin:0}.government-footer li{margin:0 0 10px}
+.government-footer a{color:white;text-decoration:none}.government-footer a:hover,.government-footer a:focus-visible{text-decoration:underline}.government-footer .underlined{text-decoration:underline}
+.government-footer .complaint-link{font-size:16px;margin-bottom:20px}.government-footer .social-title{margin-bottom:24px}
+.government-footer .footer-socials{display:flex;gap:14px;align-items:center;margin-bottom:24px}.footer-socials li{margin:0}.footer-socials a{display:flex;align-items:center;justify-content:center;width:24px;height:28px}.footer-socials img{width:24px;height:24px;object-fit:contain}
+.footer-079{display:block;width:250px;max-width:100%;height:auto}.footer-disclaimer{border-top:1px solid #ffffff30;padding-top:12px;margin-top:25px;font-size:10px;color:#ead7df}
+@media(max-width:991px){.government-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}.government-footer p{margin-top:0}}
+@media(max-width:575px){.government-footer{padding-top:28px}.government-footer-grid{grid-template-columns:1fr;gap:28px}.government-footer h2{margin-bottom:18px}.footer-brand{padding-top:0}}
+
+/* Sticky header and accessible mobile navigation. */
+:root{--header-offset:164px}html{scroll-padding-top:var(--header-offset)}
+.masthead{position:sticky;top:0;z-index:100;box-shadow:0 2px 5px #00000012}
+.menu-toggle{display:none}
+@media(max-width:767px){
+  :root{--header-offset:175px}
+  .brand-row{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:4px 12px;padding:9px 0}
+  .government-logo{grid-column:1;grid-row:1;width:145px;height:53px}
+  .prototype-badge{grid-column:1;grid-row:2;justify-self:start;margin:0;font-size:7px;padding:2px 5px}
+  .menu-toggle{grid-column:2;grid-row:1 / 3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:44px;height:44px;padding:9px;background:transparent;border:1px solid #ffffff80;border-radius:4px;color:white}
+  .menu-toggle span{display:block;width:23px;height:2px;background:currentColor}
+  .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(7px) rotate(45deg)}
+  .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-7px) rotate(-45deg)}
+  .government-links{display:none;grid-column:1 / -1;grid-row:3;width:100%;flex-direction:column;align-items:stretch;gap:0;max-height:45vh;overflow-y:auto;margin-top:8px;border-top:1px solid #ffffff40}
+  .government-links.is-open{display:flex}
+  .government-links a{padding:12px 8px;min-height:44px;font-size:16px}
+  .government-links a:hover{background:#ffffff12}
+}
+
+.section-toggle{display:none}.section-menu{padding:0 0 16px}.section-menu a{display:block;color:white;padding:10px 0;text-decoration:none;font-size:16px}.section-menu a:hover{text-decoration:underline}
+@media(max-width:767px){
+  .masthead>.brand-row{width:100%;grid-template-columns:minmax(0,1fr) 44px;padding:8px 6px;gap:0 8px;min-height:80px;position:relative}
+  .government-logo{width:164px;height:60px;grid-row:1}
+  .prototype-badge{position:absolute;left:178px;top:59px;font-size:6px;padding:1px 3px;letter-spacing:0;border:0;margin:0}
+  .menu-toggle{grid-row:1;grid-column:2;border:0;border-radius:0;height:44px;width:36px;padding:6px;align-self:start;margin-top:6px;gap:5px}
+  .menu-toggle span{width:23px;height:2px}
+  .menu-toggle[aria-expanded="true"] span:first-child,.menu-toggle[aria-expanded="true"] span:last-child{transform:none}
+  .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:1}
+  .menu-toggle[aria-expanded="true"]{color:#aaa}
+  .government-links{grid-row:2;grid-column:1 / -1;width:calc(100% + 12px);margin:4px -6px -8px;padding:24px 0 12px;border-top:1px solid white;max-height:45vh;align-items:center;gap:0}
+  .government-links a{width:100%;justify-content:center;font-size:16px;min-height:44px;padding:10px 8px}
+  .nav-inner{height:68px;width:calc(100% - 32px);justify-content:space-between;gap:8px}
+  .nav-title{font-size:20px;line-height:1.2}
+  .section-toggle{display:flex;flex-shrink:0;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:32px;height:44px;border:0;background:transparent;color:#fff;padding:4px;align-self:flex-start;margin-top:4px}
+  .section-toggle span{display:block;width:23px;height:2px;background:currentColor}
+  main.wrap{width:calc(100% - 40px);left:10px}
+  .crumb{padding-top:38px;margin-bottom:64px}
+  .agency-logo{width:309px;height:auto}.version{font-size:18px;line-height:28px;margin-bottom:25px}.version span{font-size:8px}
+  h1{font-size:28px;line-height:1.4}
+  .reference-disclaimer{font-size:9px;line-height:14px;margin-top:10px}
+  .reference-form{margin-top:38px}
+  .query-options{flex-direction:row;gap:24px;padding-bottom:26px}
+  .query-options label{flex:1;min-width:0;align-items:center;gap:9px;font-size:18px;line-height:26px}
+  .query-options input{width:13px;height:13px}
+}
+@media(max-width:359px){.nav-title{font-size:17px}.query-options{gap:12px}.query-options label{font-size:15px;line-height:22px}.prototype-badge{left:170px;font-size:5px}h1{font-size:25px}}
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap brand-row">
+      <img class="government-logo" src="assets/gobierno-mexico.svg" alt="Gobierno de México — referencia visual en un prototipo no oficial" width="205" height="75">
+      <span class="prototype-badge">PROTOTIPO NO OFICIAL</span>
+      <button class="menu-toggle" type="button" aria-controls="government-menu" aria-expanded="false" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav id="government-menu" class="government-links" aria-label="Enlaces al sitio oficial"><a href="https://www.gob.mx/tramites" target="_blank" rel="noopener noreferrer">Trámites</a><a href="https://www.gob.mx/gobierno" target="_blank" rel="noopener noreferrer">Gobierno</a><a href="https://www.gob.mx/busqueda" target="_blank" rel="noopener noreferrer" aria-label="Buscar en el sitio oficial"><svg viewBox="0 0 24 24" width="25" height="25" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15 15 6 6" stroke="currentColor" stroke-width="2.4"/></svg></a></nav>
+    </div>
+    <div class="nav"><div class="wrap nav-inner"><span class="nav-title">FACTURA ELECTRÓNICA</span><button class="section-toggle" type="button" aria-controls="section-menu" aria-expanded="false" aria-label="Abrir menú de factura electrónica"><span></span><span></span><span></span></button></div><nav id="section-menu" class="section-menu wrap" aria-label="Factura electrónica" hidden><a href="#consulta">Verificación de CFDI</a><a href="#ayuda">Acerca de esta demostración</a></nav></div>
+  </header>
+  <main class="wrap">
+    <nav class="crumb" aria-label="Ruta de navegación"><a href="index.html"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="m2 11 10-9 10 9M5 10v12h5v-8h4v8h5V10" fill="currentColor" stroke="currentColor" stroke-width="1"/></svg><span aria-hidden="true">›</span> Inicio</a></nav>
+    <section class="intro">
+      <img class="agency-logo" src="assets/hacienda-sat.jpg" alt="Hacienda y SAT — logotipos de referencia" width="375" height="51">
+      <p class="version">Versión 4.5.1 <span>· Reproducción de prueba</span></p>
+      <h1>Verificación de comprobantes fiscales digitales por internet</h1>
+      <p class="reference-disclaimer">Sitio de prueba no oficial, con fines educativos y profesionales. Sin afiliación al SAT ni al Gobierno de México.</p>
+    </section>
+    <section class="reference-form" id="consulta" aria-label="Consulta de comprobantes de prueba">
+      <fieldset class="query-options"><legend class="sr-only">Tipo de consulta</legend>
+        <label><input type="radio" name="query-mode" value="folio" checked> Consulta por Folio Fiscal</label>
+        <label><input type="radio" name="query-mode" value="xml"> Consulta por archivo XML</label>
+      </fieldset>
+      <form id="verification-form" autocomplete="off">
+        <h2 class="reference-heading">A través de esta opción, usted podrá simular la verificación de un comprobante fiscal</h2>
+        <fieldset id="folio-fields" class="reference-fields"><legend class="sr-only">Datos ficticios del comprobante</legend>
+          <div><label for="folio">Folio fiscal*:</label><input id="folio" name="folio" required maxlength="36" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" title="Usa un UUID de 36 caracteres, con guiones."></div>
+          <div><label for="emisor">RFC emisor*:</label><input id="emisor" name="emisor" required minlength="12" maxlength="13" pattern="[A-Za-zÑñ&amp;]{3,4}[0-9]{6}[A-Za-z0-9]{3}" title="Usa un RFC ficticio de 12 o 13 caracteres."></div>
+          <div><label for="receptor">RFC receptor*:</label><input id="receptor" name="receptor" required minlength="12" maxlength="13" pattern="[A-Za-zÑñ&amp;]{3,4}[0-9]{6}[A-Za-z0-9]{3}" title="Usa un RFC ficticio de 12 o 13 caracteres."></div>
+        </fieldset>
+        <fieldset id="xml-fields" class="xml-fields" hidden disabled><legend class="sr-only">Archivo de prueba</legend><label for="xml">Archivo XML de prueba*:</label><input type="file" id="xml" name="xml" accept=".xml,text/xml,application/xml" required><p class="hint">Selecciona únicamente un archivo ficticio. No se carga a ningún servidor ni se valida su contenido.</p></fieldset>
+        <div class="verification-row">
+          <div class="captcha-demo"><svg viewBox="0 0 188 125" width="188" height="125" role="img" aria-labelledby="captcha-title"><title id="captcha-title">Código de demostración</title><defs><pattern id="noise" width="7" height="9" patternUnits="userSpaceOnUse"><rect width="7" height="9" fill="#d3d3d3"/><path d="M1 0v4M5 5v4" stroke="#999" stroke-width="1"/></pattern></defs><rect width="188" height="125" fill="url(#noise)"/><path d="M0 18L188 119M24 0l44 125M87 0l-15 125" stroke="#929292" fill="none"/><text id="captcha-code" x="14" y="70" transform="rotate(17 94 62)" fill="#6e7375" font-family="Georgia,serif" font-weight="bold" font-style="italic" font-size="43" letter-spacing="2"></text><rect y="106" width="188" height="19" fill="#e6e6e6"/><text x="94" y="119" text-anchor="middle" fill="#505050" font-size="10" font-family="Arial,sans-serif">CÓDIGO DE PRUEBA</text></svg><button type="button" id="refresh-captcha" class="text-button">Cambiar código</button></div>
+          <div><label for="captcha">Proporcione el código de la imagen*:</label><input id="captcha" name="captcha" inputmode="text" maxlength="5" minlength="5" required autocapitalize="characters" spellcheck="false" title="Escribe las cinco letras y números de la imagen." aria-describedby="captcha-help"><span id="captcha-help" class="sr-only">Escribe las letras y números de la imagen. No se distinguen mayúsculas y minúsculas. Código simulado, sin función de seguridad real.</span></div>
+          <div class="verify-action"><button type="submit" class="verify-button">Verificar CFDI</button></div>
+        </div>
+        <p class="required-note">* Datos obligatorios</p>
+        <section id="result" class="result result-table" aria-label="Resultado simulado" aria-live="polite" hidden><p class="result-notice"><strong>RESULTADO DE PRUEBA · NO OFICIAL · SIN VALIDEZ FISCAL</strong></p><p id="result-detail" hidden></p><div id="fixture-table" hidden><div class="table-scroll" tabindex="0" role="region" aria-label="Datos del comprobante de prueba"><table class="cfdi-table"><caption class="sr-only">Información ficticia proporcionada para esta demostración. No constituye una consulta al SAT.</caption><colgroup><col style="width:29.6%"><col style="width:25.1%"><col style="width:18.9%"><col style="width:26.4%"></colgroup><tbody><tr><th id="result-0-0" scope="col">RFC del emisor</th><th id="result-0-1" scope="col">Nombre o razón social del emisor</th><th id="result-0-2" scope="col">RFC del receptor</th><th id="result-0-3" scope="col">Nombre o razón social del receptor</th></tr><tr><td headers="result-0-0">MERR981119614</td><td headers="result-0-1">RAFAEL DE JESUS MENDOZA ROMAN</td><td headers="result-0-2">DOPO8006205Y2</td><td headers="result-0-3">OHELJER AGUSTIN DOMINGUEZ PEREZ</td></tr></tbody><tbody><tr><th id="result-1-0" scope="col">Folio fiscal</th><th id="result-1-1" scope="col">Fecha de expedición</th><th id="result-1-2" scope="col">Fecha certificación SAT</th><th id="result-1-3" scope="col">PAC que certificó</th></tr><tr><td headers="result-1-0">311B693F-282C-429D-B8B2-90E69370579B</td><td headers="result-1-1">2026-08-12T17:37:12</td><td headers="result-1-2">2026-08-12T17:37:11</td><td headers="result-1-3">PPD101129EA3</td></tr></tbody><tbody><tr><th id="result-2-0" scope="col">Total del CFDI</th><th id="result-2-1" scope="col">Efecto del comprobante</th><th id="result-2-2" scope="col">Estado CFDI</th><th id="result-2-3" scope="col">Estatus de cancelación</th></tr><tr><td headers="result-2-0">$104,808.46</td><td headers="result-2-1">Ingreso</td><td headers="result-2-2">Vigente</td><td headers="result-2-3">Cancelable con aceptación</td></tr></tbody></table></div><p class="result-footnote">Datos de ejemplo. Los estados “Vigente” y “Cancelable con aceptación” son simulados; no han sido consultados ni confirmados por el SAT.</p></div></section>
+        <div class="demo-tools"><span>Demostración no oficial · Sin validez fiscal</span><button type="button" class="text-button" id="example">Cargar ejemplo</button><button type="reset" class="text-button">Limpiar</button></div>
+        <p class="privacy">Los datos permanecen en tu navegador. No se envían ni se guardan.</p>
+
+      </form>
+    </section>
+    <section class="faq" id="ayuda"><h2>Acerca de esta demostración</h2><details><summary>¿Esta página es un servicio oficial?</summary><p>No. Es un prototipo independiente con fines educativos y profesionales para presentar mejoras de diseño y usabilidad. No tiene afiliación, autorización ni respaldo del SAT o del Gobierno de México.</p></details><details><summary>¿Se almacenan o se envían los datos?</summary><p>No. El formulario funciona localmente en tu navegador, sin conexión a bases de datos ni servicios de validación. Al limpiar o recargar la página, el resultado desaparece. Utiliza solamente datos ficticios.</p></details><details><summary>¿Qué mejoras propone esta interfaz?</summary><p>Una jerarquía visual más clara, instrucciones junto a los campos, un ejemplo listo para usar, diseño adaptable a dispositivos móviles y mensajes accesibles sobre el resultado de la consulta.</p></details></section>
+  </main>
+  <footer class="government-footer">
+    <div class="wrap government-footer-grid">
+      <div class="footer-brand"><img src="assets/gobierno-mexico.svg" alt="Gobierno de México — referencia visual del prototipo" width="164" height="60"></div>
+      <section aria-labelledby="footer-links-title"><h2 id="footer-links-title">Enlaces</h2><ul>
+        <li><a href="https://data.buengobierno.gob.mx/databuengobierno" target="_blank" rel="noopener noreferrer">Datos abiertos de la SABG</a></li>
+        <li><a href="http://www.ordenjuridico.gob.mx" target="_blank" rel="noopener noreferrer">Marco Jurídico</a></li>
+        <li><a href="https://consultapublicamx.plataformadetransparencia.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio" target="_blank" rel="noopener noreferrer">Plataforma Nacional de Transparencia</a></li>
+        <li><a href="https://transparencia.gob.mx" target="_blank" rel="noopener noreferrer">Transparencia para el pueblo</a></li>
+        <li><a href="https://alertadores.buengobierno.gob.mx/" target="_blank" rel="noopener noreferrer">Alerta</a></li>
+      </ul></section>
+      <section aria-labelledby="footer-about-title"><h2 id="footer-about-title">¿Qué es gob.mx?</h2><p>Es el portal único de trámites, información y participación ciudadana. <a class="underlined" href="https://www.gob.mx/que-es-gobmx" target="_blank" rel="noopener noreferrer">Leer más</a></p><ul>
+        <li><a href="https://datos.gob.mx" target="_blank" rel="noopener noreferrer">Portal de datos abiertos</a></li>
+        <li><a href="https://www.gob.mx/accesibilidad" target="_blank" rel="noopener noreferrer">Declaración de accesibilidad</a></li>
+        <li><a href="https://www.gob.mx/terminos" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a></li>
+      </ul></section>
+      <section aria-label="Contacto y redes del Gobierno de México"><h2 class="complaint-link"><a class="underlined" href="https://sidec.buengobierno.gob.mx/#!/" target="_blank" rel="noopener noreferrer">Denuncia contra servidores públicos</a></h2><h2 class="social-title">Síguenos en</h2>
+        <ul class="footer-socials">
+          <li><a href="https://www.facebook.com/gobmexico" target="_blank" rel="noopener noreferrer" aria-label="Facebook del Gobierno de México"><img src="assets/footer-facebook.png" alt="" width="24" height="24"></a></li>
+          <li><a href="https://twitter.com/GobiernoMX" target="_blank" rel="noopener noreferrer" aria-label="X del Gobierno de México"><img src="assets/footer-twitter.png" alt="" width="24" height="24"></a></li>
+          <li><a href="https://www.instagram.com/gobmexico/" target="_blank" rel="noopener noreferrer" aria-label="Instagram del Gobierno de México"><img src="assets/footer-instagram.png" alt="" width="24" height="24"></a></li>
+          <li><a href="https://www.youtube.com/@gobiernodemexico" target="_blank" rel="noopener noreferrer" aria-label="YouTube del Gobierno de México"><img src="assets/footer-youtube.png" alt="" width="24" height="24"></a></li>
+        </ul>
+        <img class="footer-079" src="assets/footer-079.png" alt="079. Comunícate, estamos para ayudarte. Referencia al servicio gubernamental." width="250">
+      </section>
+    </div>
+    <div class="wrap footer-disclaimer">Prototipo no oficial · Fines educativos y profesionales · Sin afiliación al SAT ni al Gobierno de México. Los enlaces externos dirigen a los sitios de referencia.</div>
+  </footer>
+  <script src="navigation.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
