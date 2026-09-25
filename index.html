@@ -94,25 +94,31 @@ main.wrap{position:relative;left:15px}.crumb{padding:38px 0 0;margin:0 0 64px;fo
   .query-options input{width:13px;height:13px}
 }
 @media(max-width:359px){.nav-title{font-size:17px}.query-options{gap:12px}.query-options label{font-size:15px;line-height:22px}.prototype-badge{left:170px;font-size:5px}h1{font-size:25px}}
+
+/* Compact presentation labels. */
+.government-links{margin-left:auto}
+.result-table .result-notice{background:none;border:0;padding:0;margin:0 0 10px;color:#666;font-size:12px}
+.result-table .result-notice strong{font-weight:400}
+.footer-disclaimer{font-size:12px}
+@media(max-width:767px){.government-links{margin-left:-6px}}
   </style>
 </head>
 <body>
   <header class="masthead">
     <div class="wrap brand-row">
       <img class="government-logo" src="assets/gobierno-mexico.svg" alt="Gobierno de México — referencia visual en un prototipo no oficial" width="205" height="75">
-      <span class="prototype-badge">PROTOTIPO NO OFICIAL</span>
+      
       <button class="menu-toggle" type="button" aria-controls="government-menu" aria-expanded="false" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <nav id="government-menu" class="government-links" aria-label="Enlaces al sitio oficial"><a href="https://www.gob.mx/tramites" target="_blank" rel="noopener noreferrer">Trámites</a><a href="https://www.gob.mx/gobierno" target="_blank" rel="noopener noreferrer">Gobierno</a><a href="https://www.gob.mx/busqueda" target="_blank" rel="noopener noreferrer" aria-label="Buscar en el sitio oficial"><svg viewBox="0 0 24 24" width="25" height="25" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15 15 6 6" stroke="currentColor" stroke-width="2.4"/></svg></a></nav>
     </div>
-    <div class="nav"><div class="wrap nav-inner"><span class="nav-title">FACTURA ELECTRÓNICA</span><button class="section-toggle" type="button" aria-controls="section-menu" aria-expanded="false" aria-label="Abrir menú de factura electrónica"><span></span><span></span><span></span></button></div><nav id="section-menu" class="section-menu wrap" aria-label="Factura electrónica" hidden><a href="#consulta">Verificación de CFDI</a><a href="#ayuda">Acerca de esta demostración</a></nav></div>
+    <div class="nav"><div class="wrap nav-inner"><span class="nav-title">FACTURA ELECTRÓNICA</span><button class="section-toggle" type="button" aria-controls="section-menu" aria-expanded="false" aria-label="Abrir menú de factura electrónica"><span></span><span></span><span></span></button></div><nav id="section-menu" class="section-menu wrap" aria-label="Factura electrónica" hidden><a href="#consulta">Verificación de CFDI</a><a href="#acerca">Acerca del sitio</a></nav></div>
   </header>
   <main class="wrap">
     <nav class="crumb" aria-label="Ruta de navegación"><a href="index.html"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="m2 11 10-9 10 9M5 10v12h5v-8h4v8h5V10" fill="currentColor" stroke="currentColor" stroke-width="1"/></svg><span aria-hidden="true">›</span> Inicio</a></nav>
     <section class="intro">
       <img class="agency-logo" src="assets/hacienda-sat.jpg" alt="Hacienda y SAT — logotipos de referencia" width="375" height="51">
-      <p class="version">Versión 4.5.1 <span>· Reproducción de prueba</span></p>
+      <p class="version">Versión 4.5.1</p>
       <h1>Verificación de comprobantes fiscales digitales por internet</h1>
-      <p class="reference-disclaimer">Sitio de prueba no oficial, con fines educativos y profesionales. Sin afiliación al SAT ni al Gobierno de México.</p>
     </section>
     <section class="reference-form" id="consulta" aria-label="Consulta de comprobantes de prueba">
       <fieldset class="query-options"><legend class="sr-only">Tipo de consulta</legend>
@@ -120,26 +126,24 @@ main.wrap{position:relative;left:15px}.crumb{padding:38px 0 0;margin:0 0 64px;fo
         <label><input type="radio" name="query-mode" value="xml"> Consulta por archivo XML</label>
       </fieldset>
       <form id="verification-form" autocomplete="off">
-        <h2 class="reference-heading">A través de esta opción, usted podrá simular la verificación de un comprobante fiscal</h2>
+        <h2 class="reference-heading">Ingrese los datos del comprobante para consultar su información</h2>
         <fieldset id="folio-fields" class="reference-fields"><legend class="sr-only">Datos ficticios del comprobante</legend>
           <div><label for="folio">Folio fiscal*:</label><input id="folio" name="folio" required maxlength="36" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" title="Usa un UUID de 36 caracteres, con guiones."></div>
-          <div><label for="emisor">RFC emisor*:</label><input id="emisor" name="emisor" required minlength="12" maxlength="13" pattern="[A-Za-zÑñ&amp;]{3,4}[0-9]{6}[A-Za-z0-9]{3}" title="Usa un RFC ficticio de 12 o 13 caracteres."></div>
-          <div><label for="receptor">RFC receptor*:</label><input id="receptor" name="receptor" required minlength="12" maxlength="13" pattern="[A-Za-zÑñ&amp;]{3,4}[0-9]{6}[A-Za-z0-9]{3}" title="Usa un RFC ficticio de 12 o 13 caracteres."></div>
+          <div><label for="emisor">RFC emisor*:</label><input id="emisor" name="emisor" required minlength="12" maxlength="13" pattern="[A-Za-zÑñ&amp;]{3,4}[0-9]{6}[A-Za-z0-9]{3}" title="RFC de 12 o 13 caracteres."></div>
+          <div><label for="receptor">RFC receptor*:</label><input id="receptor" name="receptor" required minlength="12" maxlength="13" pattern="[A-Za-zÑñ&amp;]{3,4}[0-9]{6}[A-Za-z0-9]{3}" title="RFC de 12 o 13 caracteres."></div>
         </fieldset>
-        <fieldset id="xml-fields" class="xml-fields" hidden disabled><legend class="sr-only">Archivo de prueba</legend><label for="xml">Archivo XML de prueba*:</label><input type="file" id="xml" name="xml" accept=".xml,text/xml,application/xml" required><p class="hint">Selecciona únicamente un archivo ficticio. No se carga a ningún servidor ni se valida su contenido.</p></fieldset>
+        <fieldset id="xml-fields" class="xml-fields" hidden disabled><legend class="sr-only">Archivo de prueba</legend><label for="xml">Archivo XML*:</label><input type="file" id="xml" name="xml" accept=".xml,text/xml,application/xml" required><p class="hint">El archivo se selecciona localmente; no se envía ni se valida su contenido.</p></fieldset>
         <div class="verification-row">
-          <div class="captcha-demo"><svg viewBox="0 0 188 125" width="188" height="125" role="img" aria-labelledby="captcha-title"><title id="captcha-title">Código de demostración</title><defs><pattern id="noise" width="7" height="9" patternUnits="userSpaceOnUse"><rect width="7" height="9" fill="#d3d3d3"/><path d="M1 0v4M5 5v4" stroke="#999" stroke-width="1"/></pattern></defs><rect width="188" height="125" fill="url(#noise)"/><path d="M0 18L188 119M24 0l44 125M87 0l-15 125" stroke="#929292" fill="none"/><text id="captcha-code" x="14" y="70" transform="rotate(17 94 62)" fill="#6e7375" font-family="Georgia,serif" font-weight="bold" font-style="italic" font-size="43" letter-spacing="2"></text><rect y="106" width="188" height="19" fill="#e6e6e6"/><text x="94" y="119" text-anchor="middle" fill="#505050" font-size="10" font-family="Arial,sans-serif">CÓDIGO DE PRUEBA</text></svg><button type="button" id="refresh-captcha" class="text-button">Cambiar código</button></div>
+          <div class="captcha-demo"><svg viewBox="0 0 188 125" width="188" height="125" role="img" aria-labelledby="captcha-title"><title id="captcha-title">Código de demostración</title><defs><pattern id="noise" width="7" height="9" patternUnits="userSpaceOnUse"><rect width="7" height="9" fill="#d3d3d3"/><path d="M1 0v4M5 5v4" stroke="#999" stroke-width="1"/></pattern></defs><rect width="188" height="125" fill="url(#noise)"/><path d="M0 18L188 119M24 0l44 125M87 0l-15 125" stroke="#929292" fill="none"/><text id="captcha-code" x="14" y="70" transform="rotate(17 94 62)" fill="#6e7375" font-family="Georgia,serif" font-weight="bold" font-style="italic" font-size="43" letter-spacing="2"></text></svg><button type="button" id="refresh-captcha" class="text-button">Cambiar código</button></div>
           <div><label for="captcha">Proporcione el código de la imagen*:</label><input id="captcha" name="captcha" inputmode="text" maxlength="5" minlength="5" required autocapitalize="characters" spellcheck="false" title="Escribe las cinco letras y números de la imagen." aria-describedby="captcha-help"><span id="captcha-help" class="sr-only">Escribe las letras y números de la imagen. No se distinguen mayúsculas y minúsculas. Código simulado, sin función de seguridad real.</span></div>
           <div class="verify-action"><button type="submit" class="verify-button">Verificar CFDI</button></div>
         </div>
         <p class="required-note">* Datos obligatorios</p>
-        <section id="result" class="result result-table" aria-label="Resultado simulado" aria-live="polite" hidden><p class="result-notice"><strong>RESULTADO DE PRUEBA · NO OFICIAL · SIN VALIDEZ FISCAL</strong></p><p id="result-detail" hidden></p><div id="fixture-table" hidden><div class="table-scroll" tabindex="0" role="region" aria-label="Datos del comprobante de prueba"><table class="cfdi-table"><caption class="sr-only">Información ficticia proporcionada para esta demostración. No constituye una consulta al SAT.</caption><colgroup><col style="width:29.6%"><col style="width:25.1%"><col style="width:18.9%"><col style="width:26.4%"></colgroup><tbody><tr><th id="result-0-0" scope="col">RFC del emisor</th><th id="result-0-1" scope="col">Nombre o razón social del emisor</th><th id="result-0-2" scope="col">RFC del receptor</th><th id="result-0-3" scope="col">Nombre o razón social del receptor</th></tr><tr><td headers="result-0-0">MERR981119614</td><td headers="result-0-1">RAFAEL DE JESUS MENDOZA ROMAN</td><td headers="result-0-2">DOPO8006205Y2</td><td headers="result-0-3">OHELJER AGUSTIN DOMINGUEZ PEREZ</td></tr></tbody><tbody><tr><th id="result-1-0" scope="col">Folio fiscal</th><th id="result-1-1" scope="col">Fecha de expedición</th><th id="result-1-2" scope="col">Fecha certificación SAT</th><th id="result-1-3" scope="col">PAC que certificó</th></tr><tr><td headers="result-1-0">311B693F-282C-429D-B8B2-90E69370579B</td><td headers="result-1-1">2026-08-12T17:37:12</td><td headers="result-1-2">2026-08-12T17:37:11</td><td headers="result-1-3">PPD101129EA3</td></tr></tbody><tbody><tr><th id="result-2-0" scope="col">Total del CFDI</th><th id="result-2-1" scope="col">Efecto del comprobante</th><th id="result-2-2" scope="col">Estado CFDI</th><th id="result-2-3" scope="col">Estatus de cancelación</th></tr><tr><td headers="result-2-0">$104,808.46</td><td headers="result-2-1">Ingreso</td><td headers="result-2-2">Vigente</td><td headers="result-2-3">Cancelable con aceptación</td></tr></tbody></table></div><p class="result-footnote">Datos de ejemplo. Los estados “Vigente” y “Cancelable con aceptación” son simulados; no han sido consultados ni confirmados por el SAT.</p></div></section>
-        <div class="demo-tools"><span>Demostración no oficial · Sin validez fiscal</span><button type="button" class="text-button" id="example">Cargar ejemplo</button><button type="reset" class="text-button">Limpiar</button></div>
-        <p class="privacy">Los datos permanecen en tu navegador. No se envían ni se guardan.</p>
+        <section id="result" class="result result-table" aria-label="Resultado simulado" aria-live="polite" hidden><p class="result-notice"><strong>Demostración independiente · Sin validez fiscal</strong></p><p id="result-detail" hidden></p><div id="fixture-table" hidden><div class="table-scroll" tabindex="0" role="region" aria-label="Datos del comprobante de prueba"><table class="cfdi-table"><caption class="sr-only">Información ficticia proporcionada para esta demostración. No constituye una consulta al SAT.</caption><colgroup><col style="width:29.6%"><col style="width:25.1%"><col style="width:18.9%"><col style="width:26.4%"></colgroup><tbody><tr><th id="result-0-0" scope="col">RFC del emisor</th><th id="result-0-1" scope="col">Nombre o razón social del emisor</th><th id="result-0-2" scope="col">RFC del receptor</th><th id="result-0-3" scope="col">Nombre o razón social del receptor</th></tr><tr><td headers="result-0-0">MERR981119614</td><td headers="result-0-1">RAFAEL DE JESUS MENDOZA ROMAN</td><td headers="result-0-2">DOPO8006205Y2</td><td headers="result-0-3">OHELJER AGUSTIN DOMINGUEZ PEREZ</td></tr></tbody><tbody><tr><th id="result-1-0" scope="col">Folio fiscal</th><th id="result-1-1" scope="col">Fecha de expedición</th><th id="result-1-2" scope="col">Fecha certificación SAT</th><th id="result-1-3" scope="col">PAC que certificó</th></tr><tr><td headers="result-1-0">311B693F-282C-429D-B8B2-90E69370579B</td><td headers="result-1-1">2026-08-12T17:37:12</td><td headers="result-1-2">2026-08-12T17:37:11</td><td headers="result-1-3">PPD101129EA3</td></tr></tbody><tbody><tr><th id="result-2-0" scope="col">Total del CFDI</th><th id="result-2-1" scope="col">Efecto del comprobante</th><th id="result-2-2" scope="col">Estado CFDI</th><th id="result-2-3" scope="col">Estatus de cancelación</th></tr><tr><td headers="result-2-0">$104,808.46</td><td headers="result-2-1">Ingreso</td><td headers="result-2-2">Vigente</td><td headers="result-2-3">Cancelable con aceptación</td></tr></tbody></table></div></div></section>
+        <div class="demo-tools"><button type="button" class="text-button" id="example">Cargar ejemplo</button><button type="reset" class="text-button">Limpiar</button></div>
 
       </form>
     </section>
-    <section class="faq" id="ayuda"><h2>Acerca de esta demostración</h2><details><summary>¿Esta página es un servicio oficial?</summary><p>No. Es un prototipo independiente con fines educativos y profesionales para presentar mejoras de diseño y usabilidad. No tiene afiliación, autorización ni respaldo del SAT o del Gobierno de México.</p></details><details><summary>¿Se almacenan o se envían los datos?</summary><p>No. El formulario funciona localmente en tu navegador, sin conexión a bases de datos ni servicios de validación. Al limpiar o recargar la página, el resultado desaparece. Utiliza solamente datos ficticios.</p></details><details><summary>¿Qué mejoras propone esta interfaz?</summary><p>Una jerarquía visual más clara, instrucciones junto a los campos, un ejemplo listo para usar, diseño adaptable a dispositivos móviles y mensajes accesibles sobre el resultado de la consulta.</p></details></section>
   </main>
   <footer class="government-footer">
     <div class="wrap government-footer-grid">
@@ -166,7 +170,7 @@ main.wrap{position:relative;left:15px}.crumb{padding:38px 0 0;margin:0 0 64px;fo
         <img class="footer-079" src="assets/footer-079.png" alt="079. Comunícate, estamos para ayudarte. Referencia al servicio gubernamental." width="250">
       </section>
     </div>
-    <div class="wrap footer-disclaimer">Prototipo no oficial · Fines educativos y profesionales · Sin afiliación al SAT ni al Gobierno de México. Los enlaces externos dirigen a los sitios de referencia.</div>
+    <div id="acerca" class="wrap footer-disclaimer">Demostración independiente · Sin validez fiscal · Sin afiliación al SAT ni al Gobierno de México.</div>
   </footer>
   <script src="navigation.js"></script>
   <script src="app.js"></script>

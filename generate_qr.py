@@ -29,8 +29,8 @@ qr.make_image(fill_color='black', back_color='white').save(root / 'assets/qr-pru
 qr.make_image(image_factory=SvgPathImage).save(root / 'assets/qr-prueba-cfdi.svg')
 page = root / 'qr-prueba.html'
 content = page.read_text(encoding='utf-8')
-content = re.sub(r'<a href="[^"]+">Abrir consulta de prueba</a>',
-                 lambda _: '<a href="' + html.escape(url, quote=True) + '">Abrir consulta de prueba</a>', content)
+content = re.sub(r'<a href="[^"]+">Abrir consulta</a>',
+                 lambda _: '<a href="' + html.escape(url, quote=True) + '">Abrir consulta</a>', content)
 content = re.sub(r'<p class="print-note">.*?</p>',
                  lambda _: '<p class="print-note">Demostración pública · ' + html.escape(parts.hostname) + '</p>', content)
 content = content.replace('Conecta el teléfono a la misma red Wi-Fi que esta computadora y escanea el QR.',
